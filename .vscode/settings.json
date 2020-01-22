@@ -1,0 +1,14 @@
+{
+    "liveServer.settings.host": "localhost",
+    "liveServer.settings.port": 8080,
+    "liveServer.settings.proxy": {
+
+        "enable": true,
+
+        "baseUri": "/api",
+
+        "proxyUri": "http://localhost:8080/"
+
+    },
+    "editor.renderLineHighlight": "gutter"
+}

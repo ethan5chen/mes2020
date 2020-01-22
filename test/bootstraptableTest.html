@@ -1,0 +1,89 @@
+<html>
+<head>
+    <link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap-table.css">
+    <link rel="stylesheet" href="../css/plugins/sweetalert/sweetalert2.css"> 
+</head>
+
+<body>
+  <div class="modal fade">
+    <form>
+        <input type="number" id="t">
+        <input type="button" value="Display timed alertbox!"
+        onClick="timedMsg()">
+    </form>
+  </div>
+  <table id="bootstrapTable">
+      
+  </table>
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+  <script src="../js/bootstrap-table.js"></script>
+  <script src="../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+  <script src="../js/mes/public/publicURL.js"></script>
+  <script type="text/javascript">
+      $(function () {
+          console.log(a+url);
+          $.ajax({   
+              url: url + "/template/getRelation.action",
+              method: 'post',
+              data: {
+                str1: '1',
+                str2: "inOut"
+              },
+              dataType: 'json',
+              success: function (result) {
+                  let data = result.data;
+                  initTable(data.table);
+                  
+              }
+          });
+      });
+
+      function processNameFormatter(value, row, index){
+        //console.log(processMap);
+        return value*10;
+      }
+      function initTable(data) {
+        //data = JSON.parse(data);
+        $('table').bootstrapTable({
+          data: data,
+          pagination: true,
+          uniqueId: 'num',
+          search: true,
+          dataType: 'json',
+          striped: true,
+          sidePagination: 'client',
+          pageSize: '15',
+          pageList: [10, 25, 50, 100],
+          showRefresh: true,
+          dataField: "data",
+          contentType: "application/x-www-form-urlencoded",
+          mobileResponsive: true,
+          useRowAttrFunc: true,
+          columns: [{
+            field: 'stepNum',
+            title: '工种名称',
+            sortable: true,
+            formatter: processNameFormatter
+          }, {
+            field: 'wtNum',
+            title: '物料',
+            sortable: true,
+            //formatter: materialFormatter
+          }, {
+            field: 'null',
+            title: '操作',
+           // formatter: actionFormatter
+          }
+          ]
+        });
+      }
+
+  </script>
+</body>
+
+</html>

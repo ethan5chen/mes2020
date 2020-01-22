@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>流程模板</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body {
+    margin: 10px 5px;
+  }
+
+  button {
+    margin-left: 2%;
+  }
+</style>
+<body>
+<div id="toolbar">
+  <div class="btn-group hidden-xs" id="exampleToolbar" role="group">
+    <a type="button" class="btn btn-outline btn-default" id="add-a">
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<table id="table">
+
+</table>
+
+
+<div id="detailModal" class="modal fade " aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">任务详情</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group">
+            <label>任务号：</label>
+            <span id="jobNum"></span>
+          </div>
+          <div class="form-group">
+            <label>工序名：</label>
+            <span id="stepName"></span>
+          </div>
+          <div class="form-group">
+            <label>描述：</label>
+            <span id="description"></span>
+          </div>
+          <div class="form-group">
+            <label>操作人员：</label>
+            <span id="operator"></span>
+          </div>
+          <div class="form-group">
+            <label>备注：</label>
+            <span id="commit"></span>
+          </div>
+          <div class="form-group">
+            <label>订单号：</label>
+            <span id="productId"></span>
+          </div>
+          <div class="form-group">
+            <label>订单名称：</label>
+            <span id="orderName"></span>
+          </div>
+          <div class="form-group">
+            <label>生产结果：</label>
+            <span id="results"></span>
+          </div>
+          <div class="form-group">
+            <label>设备名称：</label>
+            <span id="equip"></span>
+          </div>
+          <div id="table_collection">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/mes/public/publicURL.js"></script>
+<script src="js/mes/manage/operator_assign.js"></script>
+
+
+</body>
+</html>

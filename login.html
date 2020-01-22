@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+  <link rel="stylesheet" href="css/plugins/verify/verify.css">
+</head>
+<style>
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-width: 1340px;
+    margin: 0;
+    height: 100%;
+    min-height: 600px;
+  }
+
+  .wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: url("img/background.jpg") no-repeat center;
+    max-width: 1920px;
+    background-size: 100%, 100%;
+  }
+
+  .box {
+    z-index: 3;
+    background: url("img/box.jpg") no-repeat center;
+    background-size: contain;
+    position: relative;
+    top: -50px;
+    left: 850px;
+    width: 400px;
+    height: 300px;
+    padding-top: 20px;
+  }
+
+  .username {
+    margin-left: 50px;
+    margin-top: 90px;
+  }
+
+  .password {
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+
+  .box img {
+    width: 21px;
+    position: relative;
+    top: 5px;
+    margin-right: 20px;
+  }
+
+  .box label {
+    margin-right: 15px;
+  }
+
+  .btn-group {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .btn {
+    margin: 0px 30px;
+    height: 35px;
+    width: 90px;
+    border: 1px;
+    border-radius: 10px;
+    background-color: rgb(40, 149, 214);
+    color: white;
+    cursor: pointer;
+  }
+
+  .cover {
+    z-index: 1;
+    height: 190px;
+    position: absolute;
+  }
+
+  .middle {
+    width: 100%;
+    position: relative;
+    top: 35%;
+  }
+
+  .logo {
+    position: absolute;
+    left: 180px;
+    top: 10px;
+    height: 160px;
+    z-index: 3;
+  }
+
+  .word {
+    position: absolute;
+    left: 350px;
+    top: 40px;
+    height: 80px;
+  }
+</style>
+<body>
+<div class="wrap">
+  <div class="middle">
+    <img class="cover" src="img/cover.png" width="100%">
+    <img class="logo" src="img/logo.png">
+    <img class="word" src="img/word.png">
+    <div class="box">
+      <form id="login">
+        <div class="username has-success has-feedback"><img src="img/username.png"><label
+            for="workNum">用户名:</label><input
+            id="workNum"
+            name="workNum"
+            required
+            type="text"></div>
+        <div class="password has-success has-feedback"><img src="img/password.png"><label for="psw">密&emsp;码:</label><input
+            id="psw"
+            name="psw"
+            required
+            type="password">
+        </div>
+        <div id="validate" style="margin-top:20px;margin-left: 50px"></div>
+        <div class="btn-group" style="margin-left: 95px">
+          <button type="button" class="btn" onclick="login()">确定</button>
+          <button type="button" class="btn">取消</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/mes/public/publicURL.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/plugins/verify/verify.js"></script>
+<script src="js/all/login.js"></script>
+</body>
+</html>
+

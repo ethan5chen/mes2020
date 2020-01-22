@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>角色权限设置</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+</head>
+<style>
+  body{
+    margin: 10px 20px;
+  }
+</style>
+
+<body>
+<table class="table">
+  <caption><h2>角色权限设置</h2></caption>
+  <thead>
+  <tr>
+    <td>一级菜单</td>
+    <td>二级菜单</td>
+    <td>权限</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><input type="checkbox" class="role1 role1-0">生产流程管理</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="checkbox" class="role1 role1-1" >未设置单品</td>
+    <td>
+      <input type="radio" name="role1-1" value="1_0" class="role1-1">仅查看
+      <input type="radio" name="role1-1" value="1_1" class="role1-1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="checkbox" class="role1 role1-2">已设置单品</td>
+    <td>
+      <input type="radio" name="role1-2" value="2_0" class="role1-2">仅查看
+      <input type="radio" name="role1-2" value="2_1" class="role1-2">全部权限
+    </td>
+  <tr>
+  <tr>
+    <td><input type="checkbox">要素库</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role2" value="+2>1_0">仅查看
+      <input type="radio" name="role2" value="+2>1_1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td><input type="checkbox">规则库</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role3" value="+3>1_0">仅查看
+      <input type="radio" name="role3" value="+3>1_1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td><input type="checkbox">权限管理</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role4" value="+4>1_0">仅查看
+      <input type="radio" name="role4" value="+4>1_1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td><input type="checkbox">人员管理</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role5" value="+5>1_0">仅查看
+      <input type="radio" name="role5" value="+5>1_1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" >报表管理</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role6" value="+6>1_0">仅查看
+      <input type="radio" name="role6" value="+6>1_1">全部权限
+    </td>
+  </tr>
+  <tr>
+    <td><input type="checkbox">流程模板</td>
+    <td></td>
+    <td>
+      <input type="radio" name="role7" value="+7>1_0">仅查看
+      <input type="radio" name="role7" value="+7>1_1">全部权限
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+<button class="btn btn-success center-block" onclick="save()">确定</button>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/mes/public/publicURL.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script>
+  //除第一菜单外的其他菜单取消时单选按钮同时取消 点选时默认选择仅查看
+  $('input[type=checkbox]:not(".role1")').click(function () {
+    if(!$(this).is(':checked'))
+      $(this).parent().next().next().children().removeAttr('checked')
+    else
+      $(this).parent().next().next().children().eq(0).prop('checked',true)
+  })
+  //第一菜单取消时二级菜单单选按钮同时取消
+  $(".role1-0").click(function () {
+    if(!$(this).is(':checked')){
+      $(".role1-1").prop('checked',false);
+      $(".role1-1").parent().next().children().prop('checked',false);
+      $(".role1-2").prop('checked',false);
+      $(".role1-2").parent().next().children().prop('checked',false);
+    }
+  })
+  //第一菜单二级菜单取消时单选按钮取消 点选时默认选择仅查看
+  $(".role1-1,.role1-2").click(function () {
+    if(!$(this).is(':checked'))
+      $(this).parent().next().children().prop('checked',false);
+    else
+      $(this).parent().next().children().eq(0).prop('checked',true)
+  })
+
+  //选择单选按钮一级菜单自动勾选
+  $(':radio:not(".role1-1"):not(".role1-2")').click(function () {
+    $(this).parent().prev().prev().children().prop('checked',true)
+  })
+
+  //选择二级菜单单选按钮额二级菜单一级菜单自动勾选
+  $(".role1-1,.role1-2").click(function () {
+    $(this).parent().prev().children().prop('checked',true)
+    $(".role1-0").prop('checked',true)
+  })
+
+  function save() {
+    var role1_1=$("input[name=role1-1]:checked").val();
+    var role1_2=$("input[name=role1-2]:checked").val();
+    var role2=$("input[name=role2]:checked").val();
+    var role3=$("input[name=role3]:checked").val();
+    var role4=$("input[name=role4]:checked").val();
+    var role5=$("input[name=role5]:checked").val();
+    var role6=$("input[name=role6]:checked").val();
+    var role7=$("input[name=role7]:checked").val();
+    var roles="";
+    if(role1_1!=undefined){//拼接第一级菜单
+      roles+="1>"+role1_1;
+      if (role1_2!=null){
+        roles+="^"+role1_2;
+      }
+    }else if (role1_2!=undefined){
+      roles+="1>"+role1_2;
+    }
+    //拼接剩余菜单
+    if(role2!=undefined)roles+=role2;
+    if(role3!=undefined)roles+=role3;
+    if(role4!=undefined)roles+=role4;
+    if(role5!=undefined)roles+=role5;
+    if(role6!=undefined)roles+=role6;
+    if(role7!=undefined)roles+=role7;
+    //去过起始位置有+ 去掉该+
+    if(roles.indexOf("+")==0)
+      roles=roles.substring(1)
+    $.ajax({
+      url:url,
+      data:{
+        method:'setRoles',
+        id:getQueryVariable("id"),
+        ability:roles
+      },
+      success:function () {
+        history.back(-1);
+      }
+    })
+  }
+
+  function getQueryVariable(variable)
+  {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+  }
+  $.ajax({
+    url:url,
+    dataType:'json',
+    data:{
+      method:'getAbilityById',
+      id:getQueryVariable("id")
+    },
+    success:function (data) {
+      if(data.data.indexOf("+")==-1){
+        var roles=[];
+        roles.push(data.data)
+      }
+      else
+        var roles=data.data.split("+")
+      for(var i=0;i<roles.length;i++){
+        if(roles[i].indexOf("1>")==-1){
+          var value="+"+roles[i];
+          $("input:radio[value='"+value+"']").prop('checked',true);
+          $("input:radio[value='"+value+"']").parent().prev().prev().children().prop('checked',true);
+        }
+        else {
+          var subRoles=roles[i].substring(2).split("^")
+          for(var j=0;j<subRoles.length;j++){
+            var value=subRoles[j];
+            $("input:radio[value='"+value+"']").prop("checked",true);
+            $("input:radio[value='"+value+"']").parent().prev().children().prop('checked',true)
+            $(".role1-0").prop('checked',true)
+          }
+        }
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

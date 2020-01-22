@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS让同一行文字和输入框对齐</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+	#a {
+		height:30px;
+		border:1px solid #ccc;
+	}
+	#b {
+		margin-top:20px;
+		height:30px;
+		border:1px solid #ccc;
+	}
+	#a input {
+		width:200px;
+		height:30px;
+		border:1px solid red;
+	}
+	#b input {
+		width:200px;
+		height:30px;
+		border:1px solid red;
+		vertical-align:middle;
+		margin-top:-2px; 
+		margin-bottom:1px;
+	}
+</style>
+<span style="white-space:pre">			</span>
+</head>
+<body>
+	<select name="" id="sel">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
+	<div id="a"><input />Text1</div>
+	<div id="b"><input />Text2</div>
+</body>
+<script src="js/jquery.min.js"> </script>
+<script>
+	var id = document.getElementById("sel");
+	
+	//var id=$("#sel");
+	id.onmousedown = function(){//当按下鼠标按钮的时候
+		this.sindex = this.selectedIndex;//把当前选中的值得索引赋给下拉选中的索引
+		this.selectedIndex = -2;//把下拉选中的索引改变为-1,也就是没有!
+	}
+	id.onmouseout = function(){//当鼠标移开的时候
+		var index = id.selectedIndex;//获取下拉选中的索引
+		if(index == -2){//如果为-1,就是根本没有选
+			this.selectedIndex = this.sindex;//就把下拉选中的索引改变成之前选中的值得索引,就默认选择的是之前选中的值
+		}
+	};
+	// id.addEventListener('change',function(){
+	// });//单一添加下拉改变事件
+	$("#sel").change(function(){
+		alert(($('#sel option:selected').text()));
+    	
+  	});
+	
+
+</script>
+</html>

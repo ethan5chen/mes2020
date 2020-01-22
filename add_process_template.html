@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>添加流程模板</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+  <link rel="stylesheet" href="css/mes/process/add_process_template.css">
+</head>
+
+<body>
+
+  <div class="row">
+    <h1>新增流程模板:</h1>
+  </div>
+
+  <div class="row">
+    <!--模板名称-->
+    <div class="col-md-12" id="name_row">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label id="name_label" for="process_template_name"
+          class="control-label col-md-3 h3">模板名称:</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" id="process_template_name">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" id="description_row">
+      <form class="form-horizontal">
+        <div class="form-group text-left">
+          <label id="description_label" for="process_template_description"
+          class="control-label col-md-3 h3">模板描述:</label>
+          <div class="col-md-9">
+            <textarea class="form-control" id="process_template_description" rows="10"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--模板名称-->
+
+  <!--模板描述-->
+  <!--模板描述-->
+  <div class="row" id="operate_row">
+    <div class="col-md-2 col-md-offset-1">
+      <div class="sortable-list connectList agile-list" id="add_procedure">
+        <span class="sortable procedure_span">
+          <span class="agile-detail">
+            <span class="icon-font text-center-span">&#xe631;</span>
+            <a class="btn btn-success icon-font" json='{
+            "stepNum": "01",
+            "attr": []
+          }'>新增</a>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-md-offset-2" id="dunk_div">
+    <div id="dunk" class="sortable-list connectList agile-list">
+      <span id="dunk_span">
+        <span class="agile-detail">
+          <a class="btn btn-danger icon-font">&#xe65e;</a>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-md-offset-2">
+    <button class="btn btn-lg icon-font btn-info" id="save_all_button">&#xe69c;</button>
+  </div>
+</div>
+
+
+<div class="row" id="procedure_row">
+  <span class="sortable-list connectList agile-list" id="procedure_span">
+    <span class="sortable" id="start_span">
+      <a class="btn btn-success font-middle">&#xe61a;</a>
+    </span>
+    <span class="sortable" id="end_span">
+      <span class="agile-detail">
+        <span class="icon-font text-center-span">&#xe631;</span>
+        <span class="btn btn-danger font-middle icon-font">&#xe660;</span>
+      </span>
+    </span>
+  </span>
+
+</div>
+
+<div id="addModal" class="modal fade " aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">工序设置</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="row">
+            <!--工序名-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="procedure_name" class="h4">工序名：</label>
+                </div>
+                <div class="col-md-8">
+                  <select id="procedure_name" class="form-control">
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!--工序名-->
+
+            <!--描述-->
+            <div class="col-md-12" id="modal_description_row">
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="procedure_description" class="h4">描述：</label>
+                </div>
+                <div class="col-md-8">
+                  <p id="procedure_description" class="h4"></p>
+                </div>
+              </div>
+            </div>
+            <!--描述-->
+
+            <div class="col-md-12" id="attribute_set_row">
+              <div class="col-md-2">
+                <span class="h4">属性设置：</span>
+              </div>
+            </div>
+
+            <div class="row" id="edit_table_row">
+              <div class="col-md-12">
+                <div class="table-box">
+                  <div id="toolbar">
+                    <img id="insert_button" src="img/addButton.png" height="35px" width="35px"/>
+                  </div>
+                  <table id="attr_set_table"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="save_confirm_button">确定</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="js/jquery.min.js?v=2.1.4"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js?v=3.3.6"></script>
+  <script type="text/javascript" src="js/bootstrap-table.js"></script>
+  <script src="js/jquery-ui-1.10.4.min.js"></script>
+  <script type="text/javascript"
+  src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+  <script type="text/javascript"
+  src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+  <script type="text/javascript" src="js/plugins/sweetalert/sweetalert2.js"></script>
+  <script type="text/javascript" src="js/plugins/validate/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="js/plugins/validate/messages_zh.min.js"></script>
+  <script type="text/javascript" src="js/mes/public/publicURL.js"></script>
+  <script type="text/javascript" src="js/mes/process/add_process_template.js"></script>
+
+</body>
+</html>

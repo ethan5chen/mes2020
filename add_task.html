@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>流程模板</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/bootstrap-select/bootstrap-select.min.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body{
+    margin: 10px 35px;
+  }
+  button{
+    margin-left: 2%;
+  }
+</style>
+<body>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <span class="col-md-2 control-label">工单号：</span>
+      <span id="add_jobNum" class="col-md-10"></span>
+    </div>
+    <div class="form-group">
+      <span class="col-md-2 control-label">工序名：</span>
+      <span id="add_stepName" class="col-md-10"></span>
+    </div>
+    <div class="form-group">
+      <span class="col-md-2 control-label">描述：</span>
+      <span id="add_description" class="col-md-10"></span>
+    </div>
+    <div class="form-group">
+      <label for="order" class="col-md-2 control-label">选择订单：</label>
+      <div class="col-md-4">
+        <select name="order" id="order" class="form-control">
+          <option value=''>请选择</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="workType" class="col-md-2 control-label">选择工种：</label>
+      <div class="col-md-4">
+        <select name="workType" id="workType" class="form-control">
+          <option value=''>请选择</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="add_operator" class="col-md-2 control-label">操作人员：</label>
+      <div class="col-md-4">
+        <select name="add_operator" id="add_operator" class="form-control">
+          <option value=''>请选择</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <table id="table">
+        </table>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top: 20px;margin-bottom: 60px">
+      <label for="add_commit" class="col-md-2 control-label">备注：</label>
+      <div class="col-md-4">
+        <textarea id="add_commit" class="form-control" rows="5"></textarea>
+      </div>
+    </div>
+    <div class="col-md-3 col-md-offset-4">
+      <button type="button" class="btn-block dim btn-rounded btn-lg btn-primary" id="assign_btn">分配</button>
+    </div>
+  </form>
+
+
+  <div id="assignModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">分配工单</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="form-group">
+                <label>工单号：</label>
+                <span id="jobNum"></span>
+              </div>
+              <div class="form-group">
+                <label>工序名：</label>
+                <span id="stepName"></span>
+              </div>
+              <div class="form-group">
+                <label>描述：</label>
+                <span id="description"></span>
+              </div>
+              <div class="form-group">
+                <label>工种：</label>
+                <span id="assign_wt"></span>
+              </div>
+              <div class="form-group">
+                <label>操作人员：</label>
+                <span id="operator"></span>
+              </div>
+              <div class="form-group">
+                <label>备注：</label>
+                <span id="commit"></span>
+              </div>
+              <div class="form-group">
+                <label>订单号：</label>
+                <span id="orderNum"></span>
+              </div>
+              <div class="form-group">
+                <label>订单名：</label>
+                <span id="orderName"></span>
+              </div>
+              <div class="form-group">
+                <label for="results">生产结果：</label>
+                <select name="results" id="results" class="form-control" multiple>
+                  <option value=''>请选择</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="equip">设备选择：</label>
+                <select name="equip" id="equip" class="form-control" >
+                  <option value=''>请选择</option>
+                </select>
+              </div>
+              <table id="subTable">
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal" data-target="#assignModal"><strong>取消</strong></button>
+            <button id="submit_btn" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="selectModal" class="modal fade " aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">选择提交人</h4>
+          </div>
+          <div class="modal-body">
+            <select id="selectSubMan" class="form-control " multiple>
+
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal" data-target="#selectModal"><strong>取消</strong></button>
+            <button id="submitSubMan" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>确定</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
+    <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+    <script src="js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="js/plugins/validate/messages_zh.min.js"></script>
+    <!-- <script src="js/plugins/multiple-select/bootstrap-select.js"></script> -->
+    <script src="js/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="js/mes/public/publicURL.js"></script>
+    <script src="js/mes/manage/add_task1.js"></script>
+
+
+  </body>
+  </html>

@@ -1,0 +1,40 @@
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+button {
+  margin-left: 2%;
+}
+
+#work_type_selection {
+  margin-top: 8%;
+}
+
+.icon-font {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#select-result-panel {
+  margin-top: 25%;
+  margin-left: 10%;
+  height: auto;
+}
+
+#right_shift {
+  margin-top: 55%;
+  margin-left: 0;
+}
+
+#add_btn {
+  margin-top: 90%;
+  margin-left: 20%;
+}
+#reset_btn {
+  margin-top: 20%;
+  margin-left: 20%;
+}

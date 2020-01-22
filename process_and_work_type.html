@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>工序和工种</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+  <link rel="stylesheet" href="css/mes/process/process_and_work_type.css">
+  <link rel="stylesheet" href="css/mes/public/ali_font.css">
+</head>
+
+<body>
+
+<div class="row">
+  <div class="col-md-6">
+    <h1>工序与工种设置:</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-3">
+    <!--工序选择-->
+    <div class="panel panel-info" id="process_selection">
+      <div class="panel-heading">
+        <label for="process_selection_select">工序选择</label>
+      </div>
+      <div class="panel-body">
+        <select name="" id="process_selection_select" class="form-control">
+          
+        </select>
+      </div>
+    </div>
+    <!--工序选择-->
+    <!--工种选择-->
+    <div class="panel panel-info" id="work_type_selection">
+      <div class="panel-heading">
+        <label for="work_type_selection_select">工种选择</label>
+      </div>
+      <div class="panel-body">
+        <select name="work_type_selection_select" id="work_type_selection_select"
+                class="form-control" multiple>
+
+        </select>
+      </div>
+    </div>
+    <!--工种选择-->
+  </div>
+  <!--右移按钮-->
+  <div class="col-md-2">
+    <button class="btn btn-lg btn-info btn-block" id="right_shift">
+      <span class="icon-font">&#xe6f1;</span>
+    </button>
+  </div>
+  <!--右移按钮-->
+  <!--选择结果-->
+  <div class="col-md-3">
+    <div class="panel panel-success" id="select-result-panel">
+      <div class="panel-heading">
+        <label for="work_type_selection_select">选择结果</label>
+      </div>
+      <div class="panel-body" id="select_result_panel_body">
+        <div id="process_result"></div>
+        <br><br>
+        <div id="work_type_result"></div>
+      </div>
+    </div>
+  </div>
+  <!--选择结果-->
+  <!--添加按钮-->
+  <div class="col-md-2">
+    <button class="btn btn-lg btn-success btn-rounded btn-block font-large" id="add_btn">添加</button>
+    <button class="btn btn-lg btn-warning btn-rounded btn-block font-large" id="reset_btn">重置</button>
+  </div>
+  <!--添加按钮-->
+
+</div>
+
+<div class="row">
+
+
+</div>
+
+
+<!--分割线-->
+<div class="page-header text-center"></div>
+<!--分割线-->
+
+<!--表格-->
+<table id="process_and_work_type_table"></table>
+<!--表格-->
+
+<!--保存按钮-->
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <button class="btn btn-lg btn-success btn-rounded btn-block font-large" id="save-btn">保存</button>
+  </div>
+</div>
+<!--保存按钮-->
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/mes/public/publicURL.js"></script>
+<script src="js/mes/process/process_and_work_type.js"></script>
+
+
+</body>
+</html>

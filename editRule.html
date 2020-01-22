@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>修改规则</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link href="css/plugins/multiple-select/bootstrap-select.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+  <script src="js/jquery.min.js?v=2.1.4"></script>
+  <script src="js/plugins/multiple-select/bootstrap-select.js"></script>
+  <script src="js/bootstrap.min.js?v=3.3.6"></script>
+  <script src="js/content.min.js?v=1.0.0"></script>
+  <script src="js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="js/plugins/validate/messages_zh.min.js"></script>
+  <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+  <script src="js/mes/public/publicURL.js"></script>
+  <script src="js/mes/rule/edit_rule.js"></script>
+
+
+</head>
+<body>
+<div class="container center-block middle-box text-center">
+  <form role="form" class="form-horizontal" id="addSaveForm">
+    <div class="form-group">
+      <label class="control-label col-sm-3">规则名称:</label>
+      <div class="col-sm-9"><input id="name" class="form-control" type="text" placeholder=""
+                                   required></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3">特征:</label>
+      <div class="col-sm-9"><input id="feature" class="form-control" type="text" placeholder=""
+                                   required></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3">描述:</label>
+      <div class="col-sm-9"><textarea id="descript" class="form-control" placeholder=""
+                                      required></textarea></div>
+    </div>
+    <div class="form-group">
+      <br>
+      <label class="col-sm-4">规则执行步骤</label>
+      <div class="btn-group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">添加步骤<span
+            class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="selection">选择型</a>
+          </li>
+          <li><a href="#" id="formula">公式型</a>
+          </li>
+          <li><a href="#" id="function">功能型</a>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-danger" style="margin-left: 15px" id="delete-step-btn">
+          删除步骤
+        </button>
+      </div>
+      <br><br>
+      <hr>
+    </div>
+    <div id="step-div" class="text-left step-div">
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary col-sm-offset-2" id="save-button">保存</button>
+    </div>
+  </form>
+</div>
+
+
+<!--功能型模态窗口-->
+<div class="modal fade" id="function-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span
+            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">功能型</h4>
+      </div>
+      <div class="modal-body">
+        <form id="selectForm">
+          <div class="form-group">
+            <label for="functionDescription1">功能描述:</label>
+            <input type="text" class="form-control" placeholder="取得工资总和" id="functionDescription1">
+          </div>
+          <div class="form-group">
+            <label for="group-select">分组依据:</label>
+            <select class="form-control attribute-select" id="group-select">
+              <!--动态生成-->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="function-select">功能:</label>
+            <select class="form-control function-value" id="function-select">
+              <option value="sum">求和</option>
+              <option value="avg">取平均</option>
+              <option value="max">取最大</option>
+              <option value="min">取最小</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="operating-select">运算属性:</label>
+            <select class="form-control attribute-select function-value" id="operating-select">
+              <!--动态生成-->
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="function-save-button">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--选择型模态框-->
+<div class="modal fade" id="selection-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span
+            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">选择型</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="functionDescription2">功能描述:</label>
+          <input type="text" class="form-control" placeholder="从人员表选择信息"
+                 id="functionDescription2">
+        </div>
+        <div>
+          <button class="btn btn-success" id="element-btn">要素</button>
+          <button class="btn btn-success" id="attribute-btn">属性</button>
+          <button class="btn btn-success" id="value-btn">数值</button>
+          <button class="btn btn-success" id="relation-btn">关系运算</button>
+          <button class="btn btn-success" id="logic-btn">逻辑运算</button>
+          <button class="btn btn-success" id="sort-btn">排序</button>
+          <button class="btn btn-success" id="delete-btn">回退</button>
+        </div>
+        <br>
+        <div class="form-group" id="select-div">
+          <div class="panel panel-default" id="select-panel">
+            <div class="panel-heading">
+              选取操作（select）：
+            </div>
+            <div class="panel-body" id="select-panel-body">
+            </div>
+          </div>
+        </div>
+        <div class="form-group" id="condition-div">
+          <div class="panel panel-default" id="condition-panel">
+            <div class="panel-heading">
+              条件操作（where）：
+            </div>
+            <div class="panel-body" id="condition-panel-body">
+            </div>
+          </div>
+        </div>
+        <div class="form-group" id="sort-div">
+          <div class="panel panel-default" id="sort-panel">
+            <div class="panel-heading">
+              排序操作（order）：
+            </div>
+            <div class="panel-body" id="sort-panel-body">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="select-save-button">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--公式型模态框-->
+<div class="modal fade" id="formula-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span
+            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">公式型</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid center-block text-center">
+          <div class="row form-group">
+            <label class="control-label col-sm-2">功能描述:</label>
+            <div class="col-sm-10">
+              <input id="description" class="form-control">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-2 ">
+              <label>元素:</label>
+            </div>
+            <div class="col-sm-10">
+              <button class="btn btn-white btn-lg" type="button" id="attr-button">属性</button>
+              <button class="btn btn-white btn-lg" type="button" id="alert-text">数值</button>
+              <button class="btn btn-white btn-lg" type="button" id="left-bracket">(</button>
+              <button class="btn btn-white btn-lg" type="button" id="right-bracket">)</button>
+              <button class="btn btn-white btn-lg" type="button" id="back-button">回退</button>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button class="btn btn-white btn-lg" type="button" id="add-button">+</button>
+              <button class="btn btn-white btn-lg" type="button" id="minus-button">-</button>
+              <button class="btn btn-white btn-lg" type="button" id="multiple-button">x</button>
+              <button class="btn btn-white btn-lg" type="button" id="divice-button">÷</button>
+              <button class="btn btn-white btn-lg" type="button" id="empty-all-button">清空</button>
+            </div>
+          </div>
+          <br>
+          <div class="row form-group">
+            <div class="col-sm-2">
+              <label>公式:</label>
+            </div>
+            <div class="col-sm-10 area text-left" id="formula-div">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="formula-save-button">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

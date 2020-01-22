@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>已领取工单</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body {
+    margin: 10px 5px;
+  }
+
+  button {
+    margin-left: 2%;
+  }
+
+  .to_right {
+    margin-left: 15%;
+  }
+
+  .secondary_module {
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+</style>
+
+<body>
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel blank-panel">
+          <div class="panel-heading">
+            <!-- <div class="panel-title m-b-md">
+            </div> -->
+            <div class="panel-options">
+              <ul id="navigation" class="nav nav-pills nav-tabs">
+                <li class="active"><a data-toggle="pill" num='1' href="#tab-1">进行中</a>
+                </li>
+                <li class=""><a data-toggle="pill" num='2' href="#tab-2">已完成</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div id="tab-1" class="tab-pane active">
+                <table id="doing_table"></table>
+              </div>
+              <div id="tab-2" class="tab-pane">
+                <table id="done_table"></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="tabs-container">
+          
+          <ul id="navigation" class="nav nav-pills nav-tabs">
+            <li class="active"><a data-toggle="pill" num='1' href="#tab-1" aria-expanded="true">进行中</a>
+            </li>
+            <li class=""><a data-toggle="pill" num='2' href="#tab-2" aria-expanded="false">已完成</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+              <div class="panel-body">
+                <table id="doing_table"></table>
+              </div>
+            </div>
+            <div id="tab-2" class="tab-pane">
+              <div class="panel-body">
+                <table id="done_table"></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="row container-fluid">
+    <div class="col-xs-6 col-md-2"></div>
+    <div class="col-xs-6 col-md-8">
+      <div class="secondary_module" id="secondary_module">
+        <!-- 查看录入 -->
+        <div class="inline-block row">
+          <div class="col-xs-6 col-md-11">
+            <p class="page-header cheak_input_title" style="font-size: 18px"></p>
+          </div>
+          <div class="col-xs-6 col-md-1">
+            <a type="button" class="btn btn-outline btn-default" id="del-a">
+              <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <table class="cheak_input" id="cheak_input"></table>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-2"></div>
+  </div>
+
+  <div class="row"> &nbsp </div>
+  <div class="row"> &nbsp </div>
+
+  <div class="row"></div>
+  <!-- <div style="margin-bottom: -3%">
+    <p style="font-size: 18px;"><b>返修工单</b></p>
+  </div>
+  <table id="return_repair_table">
+
+  </table> -->
+  </div>
+
+  <!-- 任务详情模态框 -->
+  <div id="detailModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">任务详情</h4>
+        </div>
+        <!-- <div class="modal-body">
+          <div class="row">
+            <div class="form-group">
+              <label>工序名：</label>
+              <span id="stepName"></span>
+            </div>
+            <div class="form-group">
+              <label>描述：</label>
+              <span id="description"></span>
+            </div>
+            <div class="form-group">
+              <label>操作人员：</label>
+              <span id="operator"></span>
+            </div>
+            <div id="table_collection">
+            </div>
+            <div class="form-group">
+              <label>备注：</label>
+              <span id="commit"></span>
+            </div>
+          </div>
+        </div> -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group">
+              <label>工序名：</label>
+              <span id="stepName"></span>
+            </div>
+            <div class="form-group">
+              <label>描述：</label>
+              <span id="description"></span>
+            </div>
+            <div class="form-group">
+              <label>备注：</label>
+              <span id="commit"></span>
+            </div>
+            <div class="form-group">
+              <label>订单号：</label>
+              <span id="productId"></span>
+            </div>
+            <div class="form-group">
+              <label>订单名称：</label>
+              <span id="orderName"></span>
+            </div>
+            <div class="form-group">
+              <label>生产结果：</label>
+              <span id="results"></span>
+            </div>
+            <div class="form-group">
+              <label>设备名称：</label>
+              <span id="equip"></span>
+            </div>
+            <div id="table_collection">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkInputModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">查询录入</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group">
+              <label>订单号：</label>
+              <span id="checkInputModalProductId"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>工序名：</label>
+              <span id="checkInputModalStepName"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>单品名：</label>
+              <span id="checkInputModalOrderName"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>完成情况：</label>
+              <table id="checkInputModalFinish"></table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>破损情况：</label>
+              <table id="checkInputModalTorn"></table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>破损说明：</label>
+              <span id="checkInputModalTornCommit"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>退换情况：</label>
+              <table id="checkInputModalBack"></table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>退换说明：</label>
+              <span id="checkInputModalBackCommit"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 结果录入模态框 -->
+  <div id="inputResultModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">结果录入</h4>
+        </div>
+        <div class="modal-body">
+          <!--工单号，工序名，描述-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>订单号：</label>
+                <span id="orderNum"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>订单名：</label>
+                <span id="inputOrderName"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>工序名：</label>
+                <span id="inputStepName"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>描述：</label>
+                <span id="inputDescription"></span>
+              </div>
+            </div>
+          </div>
+          <!--工单号，工序名，描述-->
+
+          <div class="tabs-container" id="tabs-container">
+            <ul class="nav nav-tabs" id="nav-tabs">
+            </ul>
+            <div class="tab-content" id="tab-content">
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" onclick="empty()" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="input-button">录入</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="operateModal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">退换录入结果</h4>
+        </div>
+        <div class="modal-body">
+
+          <!--工单号，工序号，描述-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>工单号：</label>
+                <span id="operator_order_num"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>问题描述：</label>
+                <span id="operator_description"></span>
+              </div>
+            </div>
+          </div>
+          <!--工单号，工序号，描述-->
+
+          <!--完成数量-->
+
+          <div class="row">
+
+            <div class="col-md-12">
+              <h1>完成数量：</h1>
+              <br>
+            </div>
+            <div class="col-md-12">
+              <form class="form-horizontal" id="operator_finish">
+              </form>
+            </div>
+          </div>
+
+          <!--完成数量-->
+
+          <!--破损数量-->
+          <div class="row">
+
+            <div class="col-md-12">
+              <h1>破损数量：</h1>
+              <br>
+            </div>
+
+            <div class="col-md-6">
+
+              <form class="form-horizontal" id="operator_torn">
+              </form>
+
+            </div>
+
+            <div class="col-md-6">
+              <textarea id="tornCommit" class="form-control" placeholder="情况说明" rows="5"></textarea>
+            </div>
+
+          </div>
+          <!--破损数量-->
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" onclick='emptyTorn();' data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="operator_confirm">确定</button>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script src="js/jquery.min.js?v=2.1.4"></script>
+  <script src="js/bootstrap.min.js?v=3.3.6"></script>
+  <script src="js/bootstrap-table.js"></script>
+  <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+  <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+  <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+  <script src="js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="js/plugins/validate/messages_zh.min.js"></script>
+  <script src="js/mes/public/publicURL.js"></script>
+  <script src="js/mes/execution/received1.js"></script>
+
+
+</body>
+
+</html>

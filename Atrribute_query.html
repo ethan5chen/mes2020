@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>单品流程设置</title>
+	<link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+	<!-- <link rel="stylesheet" href="css/mes/public/ali_font.css"> -->
+	<link rel="stylesheet" href="css/mes/process/add_process_template.css">
+	<link href="https://cdn.bootcss.com/bootstrap-switch/4.0.0-alpha.1/css/bootstrap-switch.min.css" rel="stylesheet">
+	<style type="text/css">
+		.displayAtrModal{
+			background-color: #F8F8F8;
+			overflow:scroll; 
+			width:100%; 
+			height:80%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="row">
+		<!-- <h1>单品属性设置:</h1> -->
+		<p></p>
+		<p style="font-size: 20px;"><b>单品属性设置</b></p>
+		<input type="checkbox" id="flowAndAttrButton"></input>
+	</div>
+
+<!-- 	<div class="row">
+		<button type="button" class="btn btn-primary" id="import_template">导入模板</button>
+	</div> -->
+	<!--模板名称-->
+	<!--模板描述-->
+	<div id="import-template-modal" class="modal fade " aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+						<h3 class="m-t-none m-b">现有流程模板</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<table id="existing-process-table" class="table table-bordered table-striped table-hover">
+
+							</table>
+              <!-- <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" id="permission-setting-button"><strong>提交</strong></button>
+              	<button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal" data-target="#permission-setting-modal" ><strong>取消</strong></button> -->
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row" id="procedure_row">
+	<span class="sortable-list connectList agile-list" id="procedure_span">
+		<span class="sortable" id="start_span">
+			<a class="btn btn-success font-middle">&#xe61a;</a>
+		</span>
+		<span class="sortable" id="end_span">
+			<span class="agile-detail">
+				<span class="icon-font text-center-span">&#xe631;</span>
+				<span class="btn btn-danger font-middle icon-font">&#xe660;</span>
+			</span>
+		</span>
+	</span>
+</div>
+
+<!-- <div class="row" id="save_template">
+	<div class="col-md-10 col-md-offset-10">
+		<button type="button" class="btn btn-success" id="save_all_button">保存模板</button>
+	</div>
+</div> -->
+
+<div id="addModal" class="modal fade " aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+					aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">工序设置</h4>
+				</div>
+				<div class="modal-body">
+
+
+					<div class="row">
+
+						<div class="col-md-12" id="attribute_set_row">
+							<div class="col-md-2">
+								<span class="h4">属性设置：</span>
+							</div>
+						</div>
+
+						<div class="row" id="edit_table_row">
+							<!-- <div class="col-md-2">
+								<button type="button" class="btn btn-success" id="insert_button">添加行</button>
+							</div> -->
+							<div class="col-md-12">
+								<div class="table-box">
+									<div id="toolbar">
+										<!-- <button id="insert_button" class="btn btn-xs btn-default btn-rounded font-middle">
+											&#xe62b;
+										</button> -->
+										<img id="insert_button" src="img/addButton.png"  height="35px" width="35px" />
+										<!-- <button id="getTableData" class="btn btn-default">getTableData</button> -->
+									</div>
+									<table id="attr_set_table">
+										
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="save_confirm_button">保存</button>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+<!-- 	<div id="displayAtrModal" class="modal fade " aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">属性显示</h4>
+					</div>
+					<div class="modal-body" id="attribute_display">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+						
+					</div>
+				</div>
+			</div>
+		</div> -->
+		
+		<!--设置成品model-->
+		<div id="setEndModal" class="modal fade " aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+							aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">半成品显示</h4>
+						</div>
+						<div class="modal-body">
+							<table id="setEnd"></table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="endProduct" class="btn btn-success" data-dismiss="modal">结束生产</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div  class="displayAtrModal" id="displayAtrModal" >
+
+				<!-- <h2>属性显示</h2> -->
+				<p class="page-header" style="font-size: 18px"><b>数据显示</b></p>
+				<div class="attribute_display" id="attribute_display"></div>
+
+			</div>
+			<script type="text/javascript" src="js/jquery.min.js?v=2.1.4"></script>
+			<script type="text/javascript" src="js/bootstrap.min.js?v=3.3.6"></script>
+			<script type="text/javascript" src="js/bootstrap-table.js"></script>
+			<script src="js/jquery-ui-1.10.4.min.js"></script>
+			<script type="text/javascript"
+			src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+			<script type="text/javascript"
+			src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+			<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+			<script type="text/javascript" src="js/plugins/sweetalert/sweetalert2.js"></script>
+			<script type="text/javascript" src="js/plugins/validate/jquery.validate.min.js"></script>
+			<script type="text/javascript" src="js/plugins/validate/messages_zh.min.js"></script>
+			<script src="https://cdn.bootcss.com/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.min.js"></script>
+			<script type="text/javascript" src="js/mes/public/publicURL.js"></script>
+			<script type="text/javascript" src="js/js/tree/Atrribute_query.js"></script>
+
+		</body>
+		</html>

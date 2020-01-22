@@ -1,0 +1,61 @@
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+button {
+  margin-left: 2%;
+}
+
+#process_selection {
+  margin-top: 8%;
+}
+
+#work_type_selection {
+  margin-top: 15%;
+}
+
+#work_type_selection_select {
+   height: 230px; 
+}
+
+.icon-font {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.margin_left_3 {
+  margin-left: 3%;
+}
+
+.margin_left {
+  margin-left: 0;
+}
+
+#select-result-panel {
+  margin-top: 25%;
+  margin-left: 40%;
+  height: auto;
+}
+
+.font-large {
+  font-size: large;
+}
+
+#right_shift {
+  margin-top: 55%;
+  margin-left: 40%;
+}
+
+#add_btn {
+  margin-top: 30%;
+  margin-left: 40%;
+}
+
+#reset_btn {
+  margin-top: 20%;
+  margin-left: 40%;
+}

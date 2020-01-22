@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript">
+    function getparam(){
+      var query=window.location.search.substring(1);
+      var stepId = document.getElementById("stepId");
+
+      stepId.innerHTML=query;
+
+    }
+  </script>
+</head>
+<body onload="getparam();">
+
+<p id="stepId"></p>
+
+</body>
+</html>

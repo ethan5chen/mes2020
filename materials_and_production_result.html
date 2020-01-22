@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>物料和生产结果</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+  <link rel="stylesheet" href="css/mes/process/materials_and_production_result.css">
+  <link rel="stylesheet" href="css/mes/public/ali_font.css">
+  <style type="text/css">
+    input{
+      width:40px; 
+      vertical-align:middle;
+      margin-top:-2px; 
+      margin-bottom:1px;
+    }
+    .checkbox{
+      width:12px; 
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="row">
+  <div class="col-md-6">
+    <h1>物料和生产结果:</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <form id="two_selectForm" role="form">
+    <!--工序选择-->    <!-- class="panel panel-info" -->
+    <div  id="process_selection" class="surface">
+      <!-- <div class="panel-heading"> -->
+        <div id="process_Left" class="panel-left">
+          <p>工序选择:</p>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="panel-body"> -->
+        <select name="" id="process_selection_select" class="form-control" required>
+          <option value="">请选择</option>
+        </select>
+      <!-- </div> -->
+    </div>
+    <!--工序选择-->
+    <!--工种选择-->
+    <div class="surface" id="work_type_selection">
+      <div id="work_type_Left" class="panel-left">
+        <p>工种选择:</p>
+      </div>
+      <!-- <div class="panel-body"> -->
+        <select name="work_type_selection_select" id="work_type_selection_select" class="form-control" required>  <!-- multiple -->
+          <option value="">请选择</option>
+        </select>
+      <!-- </div> -->
+    </div>
+    <!--工种选择-->
+    </form>
+  </div>
+  <!--添加按钮-->
+  <div id="btn_two">
+    <!-- <div class="col-md-2">
+      <button class="btn btn-lg btn-warning btn-rounded btn-block font-large" id="btn2">查看生产结果</button>
+    </div>  --> 
+    <div class="col-md-2">
+      <button class="btn btn-lg btn-success btn-rounded btn-block font-large" id="btn1">添加</button>
+    </div>
+  </div>
+  <!--添加按钮-->
+
+</div>
+
+<div class="row" id="productResults_Area">
+
+</div>
+
+<!--分割线-->
+<div class="page-header text-center"></div>
+<!--分割线-->
+
+<!--表格-->
+<table id="process_and_work_type_table"></table>
+<!--表格-->
+
+<!--保存按钮-->
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <button class="btn btn-lg btn-success btn-rounded btn-block font-large" id="save-btn">保存</button>
+  </div>
+</div>
+<!--保存按钮-->
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="js/plugins/sweetalert/sweetalert2.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/mes/public/publicURL.js"></script>
+<script src="js/mes/process/materials_and_production_result.js"></script>
+
+
+</body>
+</html>

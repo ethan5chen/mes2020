@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <title>生产管理系统</title>
+
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+  <![endif]-->
+
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+</head>
+<style>
+  .roll-right.btn-back {
+    right: 140px;
+    width: 60px;
+    height: 40px;
+    outline: 0;
+  }
+</style>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+  <div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+      <div class="nav-close"><i class="fa fa-times-circle"></i>
+      </div>
+      <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+          <li class="nav-header">
+            <div id="dropdown" class="dropdown profile-element">
+              <span><img alt="image" class="img-circle" src="img/profile_small.jpg"/></span>
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <span class="clear">
+                 <span class="block m-t-xs"><strong class="font-bold" id="name">你好</strong></span>
+                 <span class="text-muted text-xs block">欢迎使用<b class="caret"></b></span>
+               </span>
+             </a>
+             <ul id="dropdown-menu" class="dropdown-menu animated fadeInRight m-t-xs">
+              <li><a class="J_menuItem" href="resetPassword.html">修改密码</a>
+              </li>
+              <!--<li><a class="J_menuItem" href="profile.html">个人中心</a>-->
+                <!--</li>-->
+                <li class="divider"></li>
+                <li><a href="login.html">安全退出</a>
+                </li>
+              </ul>
+            </div>
+            <div class="logo-element">&nbsp
+            </div>
+          </li>
+          <li>
+            <a class="J_menuItem" href="process_template.html">
+              <i class="fa fa-columns"></i>
+              <span class="nav-label">流程模板</span>
+            </a>
+          </li>
+          <li>
+            <a class="J_menuItem" href="production_control.html">
+              <i class="fa fa-columns"></i>
+              <span class="nav-label">生产管理</span>
+            </a>
+          </li>
+          <li>
+            <a class="J_menuItem" href="production_execution.html">
+              <i class="fa fa-bar-chart-o"></i>
+              <span class="nav-label">生产执行</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="J_menuItem" href="personal_management.html">
+              <i class="fa fa-edit"></i>
+              <span class="nav-label">人员管理</span>
+            </a>
+          </li>
+
+                <!-- <li>
+                    <a class="J_menuItem" href="authority_management.html">
+                        <i class="fa fa-server"></i>
+                        <span class="nav-label">权限管理</span>
+                    </a>
+                  </li> -->
+
+                  <li>
+                    <a class="J_menuItem" href="stock_control.html">
+                      <i class="fa fa-desktop"></i>
+                      <span class="nav-label">库存管理</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="J_menuItem" href="rule_bank.html">
+                      <i class="fa fa-flask"></i>
+                      <span class="nav-label">规则库</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <i class="glyphicon glyphicon-random"></i>
+                      <span class="nav-label">数据字典</span>
+                      <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                      <li>
+                        <a class="J_menuItem" href="worker_type.html">工种</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="role.html">角色</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="production_factors.html">生产要素</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="return_repair_problem.html">返修问题</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="process_list.html">工序</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="equip_type.html">设备类型</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="equips.html">设备</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="depreciate.html">折旧表</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="features.html">特征表</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="wages.html">工资表</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="environ.html">加工环境</a>
+                      </li>
+                      <li>
+                        <a class="J_menuItem" href="technology.html">工艺参数</a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <!--左侧导航结束-->
+            <!--右侧部分开始-->
+            <div id="page-wrapper" class="gray-bg dashbard-1">
+              <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                  <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                    class="fa fa-bars"></i> </a>
+                    <h1 class="navbar-minimalize minimalize-styl-2 ">生产管理系统</h1>
+                  </div>
+                </nav>
+              </div>
+              <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                  <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab">首页</a>
+                  </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+                <button class="roll-nav roll-right btn-back backButton">
+                  <i class="fa fa-reply"> 返回</i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                  <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+                  </button>
+                  <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                    </li>
+                  </ul>
+                </div>
+                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+              </div>
+              <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="homepageChart1.html" frameborder="0" seamless></iframe>
+              </div>
+            </div>
+            <!--右侧部分结束-->
+          </div>
+          <script src="js/jquery.min.js?v=2.1.4"></script>
+          <script src="js/bootstrap.min.js?v=3.3.6"></script>
+          <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+          <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+          <script src="js/plugins/layer/layer.min.js"></script>
+          <script src="js/hplus.min.js?v=4.1.0"></script>
+          <script type="text/javascript" src="js/contabs.min.js"></script>
+          <script src="js/mes/public/publicURL.js"></script>
+          <script src="js/plugins/pace/pace.min.js"></script>
+
+          <script>
+
+           if(sessionStorage.getItem("roles")==null)
+             window.location.href="login.html";
+           var name=sessionStorage.getItem("name");
+           $("#name").text(name);
+           // //一级菜单权限
+           //console.log(sessionStorage.getItem('roles'));
+           var roles = sessionStorage.getItem("roles").split("+");
+           var items = new Array();//有权限的菜单项
+           for (var i = 0; i < roles.length; i++) {
+            items.push(parseInt(roles[i].split(">")[0]))
+          }
+          var length = $("#side-menu").children().length ;
+          for (var i = length; i > 0; i--) {
+          if (items.indexOf(i) === -1) {//如果不在items里说明此菜单项没有权限应当删除
+          $("#side-menu").children().eq(i).remove()//第一个菜单项为父元素的第二个子元素index为1
+        }
+      }
+
+             //二级菜单权限
+
+             // console.log(items);
+             for (var i = 0; i < items.length; i++) {
+      if ($("#side-menu").children().eq(i + 1).children().length > 1) {//有二级菜单的菜单项
+        console.log(roles[i]);
+        var subItem = roles[i].split(">")[1].split("^");
+        //console.log("subItem");
+        //console.log(subItem);
+          var subItemIndex = new Array();//有权限二级菜单项的index
+          for (var k = 0; k < subItem.length; k++) {//把有权限的index提取出来保存到数组里
+            subItemIndex.push(parseInt(subItem[k].split("_")[0]))
+          }
+          //console.log(subItemIndex);
+          for (var j = $("#side-menu").children().eq(i + 1).children("ul").children().length - 1; j >= 0; j--) {
+            //console.log("j="+j);
+            
+              if (subItemIndex.indexOf(j + 1) == -1){//dom的index从0开始 数组index从1开始
+                // console.log($("#side-menu").children());
+                   $("#side-menu").children().eq(i + 1).children("ul").children().eq(j).remove();
+                   //移除没有查看权限的菜单项
+                 //console.log("移除成功");
+               }else {
+                  // console.log("come in j="+j);
+                  // console.log(subItem[j]);
+                  // console.log($("#side-menu").children().eq(i + 1).children("ul"));
+                  var href = $("#side-menu").children().eq(i + 1).children("ul").children().eq(j).children().attr("href") +"?"+ window.btoa("roles="+subItem[j].split("_")[1]);
+                  $("#side-menu").children().eq(i + 1).children("ul").children().eq(j).children().attr("href", href)
+                }
+              }
+            }
+      else {//无二级菜单的菜单项
+        var href=$("#side-menu").children().eq(i + 1).children().attr("href")+"?"+window.btoa("roles="+roles[i].split(">")[1].split("_")[1])
+        $("#side-menu").children().eq(i + 1).children().attr("href",href)
+      }
+    }
+
+    $("#dropdown-menu").children("li").children("a").click(function () {
+      $("#dropdown").removeClass("open")
+    })
+
+  </script>
+</body>
+</html>
+

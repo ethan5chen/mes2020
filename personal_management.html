@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>人员管理</title>
+  <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+  <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+  <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/plugins/sweetalert/sweetalert2.css">
+</head>
+<style>
+  body {
+    margin: 10px 5px;
+  }
+
+  button {
+    margin-left: 2%;
+  }
+</style>
+<body>
+<!-- <div id="toolbar" class="form-inline">
+  <div class="btn-group hidden-xs" id="exampleToolbar" role="group">
+    <a type="button" class="btn btn-outline btn-default" data-toggle="modal" id="add-a">
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+    </a>
+  </div>  
+</div> -->
+<div  id="toolbar">
+  <div class=" form-inline">
+    <a type="button" class="btn btn-outline btn-default" data-toggle="modal" id="add-a">
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+    </a>
+    <input type="text"   class="form-control"placeholder="搜索" id="search-input">
+    <input type="button" value="搜索"  class="btn btn-primary" id="searchButton"> 
+  </div>
+</div>
+
+<table id="table">
+
+</table>
+<div id="addModal" class="modal fade " aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <h3 class="m-t-none m-b">新建</h3>
+          <form id="addForm" role="form" action="http://123.58.39.29:8081/AutoFlow/staff/addStaff.action"
+          enctype="multipart/form-data" method="post" target="nm_iframe" >
+          <!-- <form id="addForm" enctype="multipart/form-data" role="form"> -->
+           <!--  <input name="method" value="addStaff.action" hidden> -->
+           <div class="form-group">
+            <label>工号：</label>
+            <input id="workNum" type="text" name="str1" placeholder="请输入工号" class="form-control"
+            required>
+          </div>
+          <div class="form-group">
+            <label>姓名：</label>
+            <input id="name" type="text" name="str2" placeholder="请输入姓名" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>性别：</label>
+            <input type="radio" name="str3" required value="男"><label>男</label>
+            <input type="radio" name="str3" required value="女"><label>女</label>
+          </div>
+          <div class="form-group">
+            <label>出生日期：</label>
+            <input id="birth" type="date" name="str4" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>照片：</label>
+            <input id="img"  type="file" name="img" required>
+          </div>
+          <div class="form-group">
+            <label>入职时间：</label>
+            <input id="entryDate" type="date" name="str5" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>身份证号：</label>
+            <input id="cardNum" type="text" name="str6" placeholder="请输入身份证号" class="form-control"
+            required>
+          </div>
+          <div class="form-group">
+            <label>家庭住址：</label>
+            <input id="address" type="text" name="str7" placeholder="请输入家庭住址" class="form-control"
+            required>
+          </div>
+          <div class="form-group">
+            <label>手机号：</label>
+            <input id="phone" type="text" name="str8" placeholder="请输入手机号" class="form-control"
+            required>
+          </div>
+          <div class="form-group">
+            <label>描述：</label>
+            <textarea id="descript" placeholder="请输入描述" name="str9" class="form-control"
+            required></textarea>
+          </div>
+          <div>
+           <button id="addStaffButton" class="btn btn-sm btn-primary pull-right m-t-n-xs"  type="submit" ><strong>提交</strong>
+            <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal"
+            data-target="#addModal"><strong>取消</strong></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="updateModal" class="modal fade " aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <h3 class="m-t-none m-b">修改</h3>
+          <form role="form"  id="updateForm"
+          action="http://123.58.39.29:8081/AutoFlow/staff/updateStaff.action" enctype="multipart/form-data"
+          method="post" target="nm_iframe" >
+          <!-- <input name="method" value="updateStaff.action" hidden> -->
+          <div class="form-group">
+            <label>工号:</label>
+            <input name="str1" id="newWorkNum" class="form-control"
+            type="text" readonly>
+          </div>
+          <div class="form-group">
+            <label >姓名:</label>
+            <input id="newName" name="str2" class="form-control" type="text"
+            required>
+          </div>
+          <div class="form-group">
+            <label>性别:</label>
+
+            <input type="radio" name="str3" required value="男"><label>男</label>
+            <input type="radio" name="str3" required value="女"><label>女</label>
+
+          </div>
+          <div class="form-group">
+            <label >出生日期:</label>
+            <input id="newBirth" type="date" name="str4" class="form-control" required>
+          </div>
+          <img style="width: 100px;height: 70px;"class="img-thumbnail"id="cropedBigImg" value='custom' src="" alt="图片预览" data-address='' title="图片预览"/>
+          <div class="form-group">
+            <label >重新上传照片:</label>
+            <input type="file" name="img">
+          </div>
+          <div class="form-group">
+            <label >入职时间:</label>
+            <input id="newEntryDate" type="date" name="str5" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label >身份证号:</label>
+            <input id="newCardNum" type="text" name="str6" placeholder="请输入身份证号" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label >家庭住址:</label>
+            <input id="newAddress" type="text" name="str7"
+            placeholder="请输入家庭住址" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label >手机号:</label>
+            <input id="newPhone" type="text" name="str8" placeholder="请输入手机号" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label >描述:</label>
+            <textarea id="newDescript" name="str9" class="form-control" placeholder="" required></textarea>
+          </div>
+          <div>
+           <button id="" class="btn btn-sm btn-primary pull-right m-t-n-xs"  type="submit" ><strong>提交</strong>
+            <button class="btn btn-sm btn-white pull-right m-t-n-xs" type="button" data-toggle="modal"
+            data-target="#updateModal"><strong>取消</strong></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--删除模态框-->
+<div id="delete-modal" class="modal fade " aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">删除</h4>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center" id="delete-prompt"></h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="delete-confirm-button">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--分配角色模态框-->
+  <div id="assign-modal" class="modal fade " aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">分配角色</h4>
+          </div>
+          <div class="modal-body" id="role-check">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="assign-confirm-button">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--分配工种模态框-->
+    <div id="worker-type-modal" class="modal fade " aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">分配工种</h4>
+            </div>
+            <div class="modal-body" id="worker-type-check">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="worker-type-confirm-button">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+      <script src="js/jquery.min.js?v=2.1.4"></script>
+      <script src="js/bootstrap.min.js?v=3.3.6"></script>
+      <script src="js/bootstrap-table.js"></script>
+      <script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+      <script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+      <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+      <script src="js/plugins/sweetalert/sweetalert2.js"></script>
+      <script src="js/plugins/validate/jquery.validate.min.js"></script>
+      <script src="js/plugins/validate/messages_zh.min.js"></script>
+      <script src="js/mes/public/publicURL.js"></script>
+      <script src="js/js/personManage/personal_management.js"></script>
+    </body>
+    </html>

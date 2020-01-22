@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../js/plugins/validate/bootstrapValidator.css">
+<style type="text/css">
+</style>
+<span style="white-space:pre">	</span>
+</head>
+<body>  
+	<!-- <select name="" id="sel">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+	</select> -->
+	<form id="form" role="form">
+		<div class="form-group">
+			<label>Username</label>
+			<input id="Username" type="text" class="form-control" name="Username" 
+			/>
+		<!-- <div class="form-group">	 -->
+			<button id="btn"></button>
+		</div>
+	</form>
+	
+</body>
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<!-- <script src="../js/bootstrap-table.js"></script> -->
+<!-- <script src="../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script> -->
+<!-- <script src="../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script> -->
+<!-- <script src="../js/plugins/sweetalert/sweetalert2.js"></script> -->
+<!-- <script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script> -->
+<script src="../js/plugins/validate/bootstrapValidator.js"></script>
+<!-- <script src="../js/plugins/validate/validate.js"></script> -->
+<script type="">
+	// var id = document.getElementById("sel");
+	
+	// //var id=$("#sel");
+	// id.onmousedown = function(){//当按下鼠标按钮的时候
+	// 	this.sindex = this.selectedIndex;//把当前选中的值得索引赋给下拉选中的索引
+	// 	this.selectedIndex = -2;//把下拉选中的索引改变为-1,也就是没有!
+	// }
+	// id.onmouseout = function(){//当鼠标移开的时候
+	// 	var index = id.selectedIndex;//获取下拉选中的索引
+	// 	if(index == -2){//如果为-1,就是根本没有选
+	// 		this.selectedIndex = this.sindex;//就把下拉选中的索引改变成之前选中的值得索引,就默认选择的是之前选中的值
+	// 	}
+	// };
+	// // id.addEventListener('change',function(){
+	// // });//单一添加下拉改变事件
+	// $("#sel").change(function(){
+	// 	alert(($('#sel option:selected').text()));
+    	
+	// });
+	//$(document).on('click', '#btn', function () {
+	$(document).ready(function() {
+		$('#form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            Username: {
+                message: '用户名验证失败',
+                validators: {
+                    notEmpty: {
+                        message: '用户名不能为空'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: '用户名只能包含大写、小写、数字和下划线'
+                    }
+                }
+            // },
+            // email: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '邮箱地址不能为空'
+            //         }
+            //     }
+            // }
+            }
+        }
+    });
+	});
+	
+	
+
+</script>
+</html>

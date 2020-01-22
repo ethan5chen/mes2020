@@ -1,0 +1,80 @@
+body {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#description_label {
+  margin-left: -16%;
+}
+
+#name_label {
+  margin-top: 0;
+  margin-left: -16%;
+}
+
+#name_row {
+  margin-top: 5%;
+}
+
+#description_row {
+  margin-top: 5%;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+  url('iconfont.woff2') format('woff2'),
+  url('iconfont.woff') format('woff'),
+  url('iconfont.ttf') format('truetype'),
+  url('iconfont.svg#iconfont') format('svg');
+}
+
+.icon-font {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-font-lg {
+  font-family: "iconfont" !important;
+  font-size: 40px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-middle {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-center-span {
+  vertical-align: middle;
+}
+
+#procedure_row {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+
+#operate_row {
+  margin-top: 2%;
+}
+
+#modal_description_row {
+  margin-top: 3%;
+}
+
+#attribute_set_row {
+  margin-top: 3%;
+}
+
+#edit_table_row {
+  margin-left: 2%;
+  margin-right: 2%;
+}
